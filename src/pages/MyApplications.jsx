@@ -131,9 +131,9 @@ function SavedJobs() {
           {filteredTrackedJobs.map((job) => (
             <div
               key={job.id}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5"
             >
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+              <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-3">
                     <StatusBadge status={job.trackingStatus} />
@@ -173,7 +173,7 @@ function SavedJobs() {
                     <button
                       type="button"
                       onClick={() => handleNotesSave(job.id)}
-                      className="mt-3 rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+                      className="mt-3 w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 sm:w-auto"
                     >
                       Save Notes
                     </button>
@@ -194,15 +194,15 @@ function SavedJobs() {
                     <button
                       type="button"
                       onClick={() => handleFollowUpDateSave(job.id)}
-                      className="mt-3 rounded-xl bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700"
+                      className="mt-3 w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-slate-700 sm:w-auto"
                     >
                       Save Date
                     </button>
                   </div>
                 </div>
 
-                <div className="w-full space-y-3 lg:w-[230px]">
-                  <div>
+                <div className="grid gap-3 sm:grid-cols-2 xl:w-[240px] xl:grid-cols-1">
+                  <div className="sm:col-span-2 xl:col-span-1">
                     <label className="mb-2 block text-sm font-medium text-slate-600">
                       Update Status
                     </label>
@@ -223,7 +223,7 @@ function SavedJobs() {
 
                   <Link
                     to={`/job/${job.id}`}
-                    className="block rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-slate-700"
+                    className="rounded-xl bg-slate-900 px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-slate-700"
                   >
                     View Details
                   </Link>
@@ -233,7 +233,7 @@ function SavedJobs() {
                       href={job.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="block rounded-xl bg-sky-600 px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-sky-700"
+                      className="rounded-xl bg-sky-600 px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-sky-700"
                     >
                       Apply Now
                     </a>
@@ -242,7 +242,7 @@ function SavedJobs() {
                   <button
                     type="button"
                     onClick={() => handleRemove(job.id)}
-                    className="w-full rounded-xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700 transition hover:bg-rose-100"
+                    className="sm:col-span-2 xl:col-span-1 rounded-xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700 transition hover:bg-rose-100"
                   >
                     Remove
                   </button>

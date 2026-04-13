@@ -2,10 +2,11 @@ function FilterSidebar({
   filters,
   onFilterChange,
   onResetFilters,
+  title = 'Filters',
 }) {
   return (
     <aside className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <h3 className="text-lg font-semibold text-slate-800">Filters</h3>
+      <h3 className="text-lg font-semibold text-slate-800">{title}</h3>
 
       <div className="mt-5 space-y-5">
         <div>

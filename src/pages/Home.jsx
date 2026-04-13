@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import DashboardWidget from '../components/DashboardWidget'
 import DeadlineList from '../components/DeadlineList'
+import FilterDrawer from '../components/FilterDrawer'
 import FilterSidebar from '../components/FilterSidebar'
 import JobCard from '../components/JobCard'
 import SearchBar from '../components/SearchBar'
@@ -17,6 +18,7 @@ function Home() {
   const [sortBy, setSortBy] = useState('latest')
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
+  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false)
   const [filters, setFilters] = useState({
     mode: 'All',
     type: 'All',
@@ -215,14 +217,16 @@ function Home() {
       )}
 
       <section className="grid gap-6 lg:grid-cols-[280px_1fr]">
-        <FilterSidebar
-          filters={filters}
-          onFilterChange={handleFilterChange}
-          onResetFilters={handleResetFilters}
-        />
+        <div className="hidden lg:block">
+          <FilterSidebar
+            filters={filters}
+            onFilterChange={handleFilterChange}
+            onResetFilters={handleResetFilters}
+          />
+        </div>
 
         <div className="space-y-4">
-          <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <h2 className="text-2xl font-bold text-slate-800">Job Opportunities</h2>
               <p className="mt-1 text-sm text-slate-500">
@@ -231,15 +235,25 @@ function Home() {
               </p>
             </div>
 
-            <select
-              value={sortBy}
-              onChange={(event) => setSortBy(event.target.value)}
-              className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 outline-none"
-            >
-              <option value="latest">Sort by Latest</option>
-              <option value="title">Sort by Title</option>
-              <option value="company">Sort by Company</option>
-            </select>
+            <div className="flex gap-3">
+              <button
+                type="button"
+                onClick={() => setIsFilterDrawerOpen(true)}
+                className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm lg:hidden"
+              >
+                Filters
+              </button>
+
+              <select
+                value={sortBy}
+                onChange={(event) => setSortBy(event.target.value)}
+                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 outline-none"
+              >
+                <option value="latest">Sort by Latest</option>
+                <option value="title">Sort by Title</option>
+                <option value="company">Sort by Company</option>
+              </select>
+            </div>
           </div>
 
           {isLoading ? (
@@ -263,6 +277,17 @@ function Home() {
           )}
         </div>
       </section>
+
+      <FilterDrawer
+        isOpen={isFilterDrawerOpen}
+        onClose={() => setIsFilterDrawerOpen(false)}
+        filters={filters}
+        onFilterChange={handleFilterChange}
+        onResetFilters={() => {
+          handleResetFilters()
+          setIsFilterDrawerOpen(false)
+        }}
+      />
     </div>
   )
 }
