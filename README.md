@@ -1,16 +1,68 @@
-# React + Vite
+# Smart Job Tracker AI SaaS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack AI-powered job application tracker for discovering roles, managing an application pipeline, tracking follow-ups, and generating AI resume-match and interview-prep insights.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React, Vite, Tailwind CSS
+- Node.js, Express.js
+- MongoDB, Mongoose
+- JWT authentication
+- OpenAI API
 
-## React Compiler
+## Local Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Install frontend dependencies:
 
-## Expanding the ESLint configuration
+```bash
+cd client
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+2. Install backend dependencies:
+
+```bash
+cd server
+npm install
+```
+
+3. Create environment files:
+
+```bash
+cp client/.env.example client/.env
+cp server/.env.example server/.env
+```
+
+4. Start backend:
+
+```bash
+cd server
+npm run dev
+```
+
+5. Start frontend:
+
+```bash
+cd client
+npm run dev
+```
+
+## Features
+
+- User authentication with protected routes
+- Job discovery with search, filters, and details
+- Application tracker with statuses, notes, and follow-up dates
+- Pipeline view and activity drawer
+- Profile and resume storage
+- AI resume-job match analysis
+- AI interview prep generation
+- AI history page
+- Demo AI fallback for quota-limited development
+
+## Deployment Notes
+
+- Deploy `client/` to Vercel with build command `npm run build` and output directory `dist`.
+- Deploy `server/` to a Node hosting provider such as Render or Railway.
+- Use MongoDB Atlas for production database.
+- Set `VITE_API_URL` in Vercel to your deployed backend URL plus `/api`.
+- See `DEPLOYMENT.md` for the full deployment checklist.
